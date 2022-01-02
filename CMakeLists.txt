@@ -6,7 +6,7 @@ project(
     DESCRIPTION "Small CMake example built with VSCode"
 )
 
-enable_testing()
+include(CTest)
 
 add_subdirectory(hello)
 add_subdirectory(apps)
