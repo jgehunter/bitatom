@@ -2,8 +2,17 @@ cmake_minimum_required(VERSION 3.11-3.18)
 
 project(hello)
 
+set(BUILD_SHARED_LIBS ON)
+set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS True)
+
 add_library(hello src/hello.cpp)
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/include)
 
 target_compile_features(hello PUBLIC cxx_std_20)
+
+add_custom_command(TARGET hello POST_BUILD
+COMMAND "${CMAKE_COMMAND}" -E copy
+"$<TARGET_FILE:hello>"
+"../apps/$<CONFIGURATION>/$<TARGET_FILE_NAME:hello>"
+COMMENT "Copying to output directory")
