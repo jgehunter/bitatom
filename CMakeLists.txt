@@ -8,3 +8,4 @@ project(
 
 add_subdirectory(hello)
 add_subdirectory(apps)
+add_subdirectory(tests)
